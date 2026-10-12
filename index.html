@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Burger House | Digital Menu</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #fffaf3;
+    color: #252525;
+}
+
+header {
+    background: #252525;
+    color: white;
+    text-align: center;
+    padding: 35px 15px;
+}
+
+header h1 {
+    font-size: 36px;
+    margin: 0 0 10px;
+}
+
+header p {
+    color: #f5b642;
+    margin: 0;
+}
+
+.hero {
+    text-align: center;
+    padding: 25px 15px;
+}
+
+.hero h2 {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.hero p {
+    color: #666;
+}
+
+.categories {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px 15px 25px;
+}
+
+.categories button {
+    border: none;
+    background: #eee;
+    padding: 12px 22px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.categories button.active,
+.categories button:hover {
+    background: #e7a62d;
+    color: #222;
+}
+
+.menu {
+    max-width: 1100px;
+    margin: auto;
+    padding: 0 18px 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 22px;
+}
+
+.item {
+    background: white;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 3px 14px rgba(0,0,0,0.08);
+}
+
+.item img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    display: block;
+}
+
+.item-content {
+    padding: 17px;
+}
+
+.item h3 {
+    margin: 0 0 10px;
+}
+
+.item p {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.5;
+    min-height: 40px;
+}
+
+.price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #a35d00;
+    margin: 15px 0;
+}
+
+.order {
+    display: block;
+    text-align: center;
+    background: #218c51;
+    color: white;
+    padding: 12px;
+    text-decoration: none;
+    border-radius: 7px;
+    font-weight: bold;
+}
+
+.order:hover {
+    background: #176c3d;
+}
+
+footer {
+    background: #252525;
+    color: white;
+    text-align: center;
+    padding: 25px 15px;
+}
+
+footer a {
+    color: #f5b642;
+}
+
+@media (max-width: 500px) {
+    header h1 {
+        font-size: 29px;
+    }
+
+    .menu {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>BURGER HOUSE</h1>
+    <p>Fresh Burgers. Great Taste.</p>
+</header>
+
+<section class="hero">
+    <h2>Our Menu</h2>
+    <p>Discover your next favorite meal.</p>
+</section>
+
+<nav class="categories">
+    <button class="active" onclick="filterMenu('all', this)">
+        All Items
+    </button>
+
+    <button onclick="filterMenu('burgers', this)">
+        Burgers
+    </button>
+
+    <button onclick="filterMenu('sides', this)">
+        Sides
+    </button>
+
+    <button onclick="filterMenu('drinks', this)">
+        Drinks
+    </button>
+</nav>
+
+<main class="menu">
+
+    <article class="item" data-category="burgers">
+        <img
+            src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=700&q=80"
+            alt="Classic beef burger">
+
+        <div class="item-content">
+            <h3>Classic Beef Burger</h3>
+            <p>Juicy beef patty, fresh lettuce, tomato and our special sauce.</p>
+            <div class="price">EGP 180</div>
+            <a class="order" href="#" onclick="orderItem(event, 'Classic Beef Burger')">
+                Order on WhatsApp
+            </a>
+        </div>
+    </article>
+
+    <article class="item" data-category="burgers">
+        <img
+            src="https://images.unsplash.com/photo-1553979459-d2229ba7433a?auto=format&fit=crop&w=700&q=80"
+            alt="Cheese burger">
+
+        <div class="item-content">
+            <h3>Double Cheese Burger</h3>
+            <p>Two beef patties, melted cheese and a delicious burger sauce.</p>
+            <div class="price">EGP 240</div>
+            <a class="order" href="#" onclick="orderItem(event, 'Double Cheese Burger')">
+                Order on WhatsApp
+            </a>
+        </div>
+    </article>
+
+    <article class="item" data-category="sides">
+        <img
+            src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=700&q=80"
+            alt="French fries">
+
+        <div class="item-content">
+            <h3>Crispy French Fries</h3>
+            <p>Golden, crispy fries served fresh and hot.</p>
+            <div class="price">EGP 65</div>
+            <a class="order" href="#" onclick="orderItem(event, 'Crispy French Fries')">
+                Order on WhatsApp
+            </a>
+        </div>
+    </article>
+
+    <article class="item" data-category="drinks">
+        <img
+            src="https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=700&q=80"
+            alt="Cold drink">
+
+        <div class="item-content">
+            <h3>Fresh Cold Drink</h3>
+            <p>A refreshing drink to complete your meal.</p>
+            <div class="price">EGP 45</div>
+            <a class="order" href="#" onclick="orderItem(event, 'Fresh Cold Drink')">
+                Order on WhatsApp
+            </a>
+        </div>
+    </article>
+
+</main>
+
+<footer>
+    <h3>Burger House</h3>
+    <p>Great food. Great moments.</p>
+    <p>For orders, contact us on WhatsApp.</p>
+</footer>
+
+<script>
+function filterMenu(category, button) {
+    const items = document.querySelectorAll('.item');
+    const buttons = document.querySelectorAll('.categories button');
+
+    items.forEach(function(item) {
+        if (category === 'all' ||
+            item.dataset.category === category) {
+            item.style.display = '';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+
+    buttons.forEach(function(btn) {
+        btn.classList.remove('active');
+    });
+
+    button.classList.add('active');
+}
+
+function orderItem(event, itemName) {
+    event.preventDefault();
+
+    // Replace this with the restaurant's WhatsApp number.
+    const phone = '201000000000';
+
+    const message = 'Hello Burger House, I would like to order: '
+                    + itemName;
+
+    const url = 'https://wa.me/' + phone
+                + '?text=' + encodeURIComponent(message);
+
+    window.open(url, '_blank');
+}
+</script>
+
+</body>
+</html>
